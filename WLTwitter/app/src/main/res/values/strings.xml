@@ -22,7 +22,7 @@
 
     <!-- TWEET -->
     <string name="tweet_reply">reply</string>
-    <string name="tweet_retweet">retweet</string>
+    <string name="tweet_retweet">RT</string>
     <string name="tweet_star">star</string>
 
     <!-- TODO: Remove or change this placeholder text -->
