@@ -9,6 +9,7 @@ import worldline.ssm.rd.ux.wltwitter.WLTwitterActivity;
 import worldline.ssm.rd.ux.wltwitter.helpers.TwitterHelper;
 import worldline.ssm.rd.ux.wltwitter.interfaces.TweetChangeListener;
 import worldline.ssm.rd.ux.wltwitter.pojo.Tweet;
+
 public class RetrieveTweetsAsyncTask extends AsyncTask<String, Void, List<Tweet>> {
 
     private TweetChangeListener mListener;
@@ -19,7 +20,7 @@ public class RetrieveTweetsAsyncTask extends AsyncTask<String, Void, List<Tweet>
 
     @Override
     protected List<Tweet> doInBackground(String... strings) {
-        if((null != strings)&&(strings.length >0)){
+        if((null != strings) && (strings.length>0)){
             return TwitterHelper.getTweetsOfUser(strings[0]);
         }
         return null;
@@ -29,8 +30,8 @@ public class RetrieveTweetsAsyncTask extends AsyncTask<String, Void, List<Tweet>
     protected void onPostExecute(List<Tweet> tweets) {
         super.onPostExecute(tweets);
 
-        if(null != mListener && null != tweets){
-            mListener.onTweetRetrieved(tweets);
-        }
+        if(null !=mListener && null !=tweets) mListener.onTweetRetrieved(tweets);
     }
 }
+
+

@@ -12,9 +12,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import worldline.ssm.rd.ux.wltwitter.R;
@@ -39,10 +36,21 @@ public class TweetsFragment extends Fragment implements TweetChangeListener {
     private String mParam1;
     private String mParam2;
 
+
+
     public TweetsFragment() {
         // Required empty public constructor
     }
 
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment TweetsFragment.
+     */
+    // TODO: Rename and change types and number of parameters
     public static TweetsFragment newInstance(String param1, String param2) {
         TweetsFragment fragment = new TweetsFragment();
         Bundle args = new Bundle();
@@ -55,7 +63,6 @@ public class TweetsFragment extends Fragment implements TweetChangeListener {
     private RetrieveTweetsAsyncTask mTweetsAsyncTask;
     private ListView mListView;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,10 +72,12 @@ public class TweetsFragment extends Fragment implements TweetChangeListener {
         }
 
         final String login = PreferenceUtils.getLogin();
-        if(!TextUtils.isEmpty(login)){
+        if(!TextUtils.isEmpty(login)) {
             mTweetsAsyncTask = new RetrieveTweetsAsyncTask(this);
             mTweetsAsyncTask.execute(login);
         }
+
+
     }
 
     @Override
@@ -78,17 +87,18 @@ public class TweetsFragment extends Fragment implements TweetChangeListener {
         View RootView = inflater.inflate(R.layout.fragment_tweets, container, false);
         mListView = (ListView) RootView.findViewById(R.id.list);
         return RootView;
+
     }
+
 
 
     @Override
     public void onTweetRetrieved(List<Tweet> tweets) {
-        //for (Tweet t:tweets) {
-        //    Log.d(TweetsFragment.class.getName(), t.text);
-        //}
 
-        final ArrayAdapter<Tweet> adapter = new ArrayAdapter<>(getActivity(),android.R.layout.simple_list_item_1, tweets);
-
+       final ArrayAdapter<Tweet> adapter = new ArrayAdapter<Tweet>(getActivity(),
+                                                            android.R.layout.simple_list_item_1
+                                                            , tweets);
         mListView.setAdapter(adapter);
+
     }
 }
